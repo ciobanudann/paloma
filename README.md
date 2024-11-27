@@ -17,6 +17,14 @@
    npm install
    ```
 
+### Env Variables
+
+Copy `.env.example` into `.env` and replace the value with the one provided in email
+
+```sh
+cp .env.example .env
+```
+
 ### Running the App
 
 To run the app in development mode, use the following command:
