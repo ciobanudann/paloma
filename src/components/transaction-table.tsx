@@ -46,7 +46,9 @@ const TransactionTable = () => {
 	const handleChangeCurrencyFilter = (currency: string) => {
 		setSearchParams({ ...searchParams, currency });
 	};
-
+	const handleResetFilters = () => {
+		table.resetColumnFilters();
+	};
 	const currencyFilterValue =
 		(table.getColumn("currency")?.getFilterValue() as string) ?? "";
 
@@ -59,7 +61,7 @@ const TransactionTable = () => {
 
 	return (
 		<div className="w-full">
-			<div className="flex items-center py-4 gap-4 justify-between">
+			<div className="flex items-center justify-between gap-4 py-4">
 				<Button onClick={handlePauseTransactions}>
 					{isPaused ? "Resume" : "Pause"}
 				</Button>
@@ -82,11 +84,12 @@ const TransactionTable = () => {
 									});
 								}}
 							/>
+							<Button onClick={handleResetFilters}>Clear Filters</Button>
 						</>
 					) : null}
 				</div>
 			</div>
-			<div className="rounded-md border">
+			<div className="border rounded-md">
 				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
@@ -136,7 +139,7 @@ const TransactionTable = () => {
 					</TableBody>
 				</Table>
 			</div>
-			<div className="flex items-center justify-end space-x-2 py-4">
+			<div className="flex items-center justify-end py-4 space-x-2">
 				<div className="flex-1 text-sm text-muted-foreground">
 					{table.getFilteredSelectedRowModel().rows.length} of{" "}
 					{table.getFilteredRowModel().rows.length} row(s) selected.
