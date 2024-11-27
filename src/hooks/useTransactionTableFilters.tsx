@@ -6,10 +6,9 @@ import { useParams, useSearchParams } from "react-router-dom";
 const useTransactionTableFilters = (table: Table<Transaction>) => {
 	const { accountId } = useParams<{ accountId: string }>();
 
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 
 	useEffect(() => {
-		setSearchParams({});
 		table.resetColumnFilters();
 	}, [accountId]);
 
