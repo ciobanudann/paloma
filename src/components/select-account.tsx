@@ -11,9 +11,12 @@ import { useGetAccountsQuery } from "@/store/apis/accounts.api";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
+import { useDispatch } from "react-redux";
+import { resetPauseTransactions } from "@/store/slices/transaction.slice";
 
 const SelectAccount = () => {
 	const { data, isError, refetch } = useGetAccountsQuery();
+	const dispatch = useDispatch();
 	const { accountId } = useParams<{ accountId: string }>();
 	const [, setSearchParams] = useSearchParams();
 
@@ -27,6 +30,7 @@ const SelectAccount = () => {
 	});
 	const handleAccountChange = (accountId: string) => {
 		setSearchParams({});
+		dispatch(resetPauseTransactions());
 		navigate(`accounts/${accountId}`);
 	};
 

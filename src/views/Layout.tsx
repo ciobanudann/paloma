@@ -1,5 +1,5 @@
+import SelectAccount from "@/components/select-account";
 import { Outlet } from "react-router-dom";
-import SelectAccount from "./components/select-account";
 
 const Layout = () => {
 	return (

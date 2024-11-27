@@ -3,6 +3,7 @@ import { Transaction } from "@/types/transaction.type";
 
 interface TransactionState {
 	transactions: Record<string, Transaction[]>;
+	lastTransactionId: string | null;
 	filters: {
 		currency: Record<string, boolean>;
 		amount: {
@@ -16,6 +17,7 @@ interface TransactionState {
 const initialState = {
 	transactions: {},
 	isPaused: false,
+	lastTransactionId: null,
 	filters: {
 		currency: {},
 		amount: {
@@ -29,8 +31,17 @@ const transactionSlice = createSlice({
 	name: "transactionSlice",
 	initialState,
 	reducers: {
-		togglePauseTransactions: (state) => {
+		togglePauseTransactions: (
+			state,
+			{ payload }: PayloadAction<{ accountId: string }>
+		) => {
 			state.isPaused = !state.isPaused;
+			state.lastTransactionId =
+				state.transactions[payload.accountId]?.[0].transactionId;
+		},
+		resetPauseTransactions: (state) => {
+			state.lastTransactionId = null;
+			state.isPaused = false;
 		},
 		addTransaction: (
 			state,
@@ -63,6 +74,9 @@ const transactionSlice = createSlice({
 	},
 });
 
-export const { addTransaction, togglePauseTransactions } =
-	transactionSlice.actions;
+export const {
+	addTransaction,
+	togglePauseTransactions,
+	resetPauseTransactions,
+} = transactionSlice.actions;
 export default transactionSlice.reducer;

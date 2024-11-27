@@ -1,7 +1,7 @@
-import useTransaction from "./hooks/useTransaction";
-import TransactionTable from "./components/transaction-table";
-import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
-import AccountDetails from "./components/account-details";
+import AccountDetails from "@/components/account-details";
+import TransactionTable from "@/components/transaction-table";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import useTransaction from "@/hooks/useTransaction";
 
 const Account = () => {
 	useTransaction();

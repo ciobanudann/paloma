@@ -8,12 +8,13 @@ import {
 	Navigate,
 	RouterProvider,
 } from "react-router-dom";
-import Account from "./Account.tsx";
-import Layout from "./Layout.tsx";
-import Empty from "./Empty.tsx";
+
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import Account from "./views/Account.tsx";
+import Empty from "./views/Empty.tsx";
+import Layout from "./views/Layout.tsx";
 
 const router = createBrowserRouter([
 	{

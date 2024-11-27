@@ -16,7 +16,7 @@ import {
 	selectTransactionCurrencyFilterValues,
 } from "@/store/selectors/transaction.selector";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { togglePauseTransactions } from "@/store/slices/transaction.slice";
 
 import CurrencyFilter from "./currency-filter";
@@ -28,7 +28,7 @@ import { flexRender } from "@tanstack/react-table";
 
 const TransactionTable = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
-
+	const { accountId } = useParams<{ accountId: string }>();
 	const currencyFilterOptions = useSelector(
 		selectTransactionCurrencyFilterValues
 	);
@@ -40,7 +40,7 @@ const TransactionTable = () => {
 	const { data, table } = useTransactionTable();
 
 	const handlePauseTransactions = () => {
-		dispatch(togglePauseTransactions());
+		dispatch(togglePauseTransactions({ accountId: accountId || "" }));
 	};
 
 	const handleChangeCurrencyFilter = (currency: string) => {

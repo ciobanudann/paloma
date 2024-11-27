@@ -20,3 +20,6 @@ export const selectTransactionCurrencyFilterValues = createSelector(
 
 export const selectTransactionAmountFilterValues = (state: RootState) =>
 	state.transactionSlice.filters.amount;
+
+export const selectLastTransactionId = (state: RootState) =>
+	state.transactionSlice.lastTransactionId;
