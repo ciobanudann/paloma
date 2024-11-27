@@ -10,6 +10,7 @@ const useTransactionTableFilters = (table: Table<Transaction>) => {
 
 	useEffect(() => {
 		setSearchParams({});
+		table.resetColumnFilters();
 	}, [accountId]);
 
 	useEffect(() => {
